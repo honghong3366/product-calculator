@@ -74,7 +74,7 @@
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
         }
         
         .input-group.horizontal .input-label, .input-section.horizontal .input-label {
@@ -85,7 +85,16 @@
         
         .input-group.horizontal .input-field, .input-section.horizontal .select-container {
             flex: 1;
-            min-width: 200px;
+            min-width: 150px;
+        }
+        
+        /* 商品售价输入组特殊样式 */
+        .price-input-group {
+            flex-wrap: nowrap;
+        }
+        
+        .price-input-group .input-field {
+            min-width: 80px;
         }
         
         .input-section.horizontal .select-container {
@@ -257,21 +266,19 @@
         
         .error-message {
             color: #dc3545;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
+            margin: 0 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
-        .price-input-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+
         
-        .price-input-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
+        .full-width {
+            width: auto;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .price-input-container .error-message {
@@ -479,12 +486,10 @@
     <div class="calculator-container">
         <!-- 商品售价 -->
         <div class="input-group horizontal price-input-group">
-                <label for="productPrice" class="input-label"><span class="required-mark">* </span>商品售价：</label>
-                <div class="price-input-container">
-                    <input type="text" id="productPrice" class="input-field" placeholder="请输入价格">
-                    <div id="priceError" class="error-message"></div>
-                </div>
-            </div>
+            <label for="productPrice" class="input-label"><span class="required-mark">* </span>商品售价：</label>
+            <input type="text" id="productPrice" class="input-field" placeholder="请输入价格">
+            <div id="priceError" class="error-message"></div>
+        </div>
         
         <!-- 选择方案 -->
         <div class="input-section horizontal">
