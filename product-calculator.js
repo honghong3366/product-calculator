@@ -508,8 +508,8 @@ class ProductCalculator {
         // 只有首付比例大于或等于35%时，才显示12期及以上的租期
         this.sortedPeriods.forEach(period => {
             // 首付比例 >= 35% 时，显示所有租期选项
-            // 首付比例 < 35% 时，只显示6期选项
-            if (selectedDownPayment >= 0.35 || period <= 6) {
+            // 首付比例 < 35% 时，显示6期和9期选项
+            if (selectedDownPayment >= 0.35 || period <= 9) {
                 const option = document.createElement('option');
                 option.value = period;
                 option.textContent = `${period}期`;
