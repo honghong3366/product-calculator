@@ -142,7 +142,7 @@ class ProductCalculator {
         
         const priceValue = parseFloat(price);
         if (priceValue < 1000) {
-            this.priceError.textContent = '商品售价不能低于1000元';
+            this.priceError.textContent = '请输入有效的商品售价';
             return false;
         }
         

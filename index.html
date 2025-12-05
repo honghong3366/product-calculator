@@ -258,8 +258,25 @@
         .error-message {
             color: #dc3545;
             font-size: 13px;
-            margin-top: 6px;
             font-weight: 500;
+        }
+        
+        .price-input-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .price-input-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .price-input-container .error-message {
+            margin: 0;
+            flex-shrink: 0;
         }
         
         .hidden {
@@ -451,10 +468,12 @@
     <!-- 计算器容器 -->
     <div class="calculator-container">
         <!-- 商品售价 -->
-        <div class="input-group horizontal">
+        <div class="input-group horizontal price-input-group">
                 <label for="productPrice" class="input-label"><span class="required-mark">* </span>商品售价：</label>
-                <input type="text" id="productPrice" class="input-field" placeholder="请输入价格">
-                <div id="priceError" class="error-message"></div>
+                <div class="price-input-container">
+                    <input type="text" id="productPrice" class="input-field" placeholder="请输入价格">
+                    <div id="priceError" class="error-message"></div>
+                </div>
             </div>
         
         <!-- 选择方案 -->
