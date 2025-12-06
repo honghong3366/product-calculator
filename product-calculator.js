@@ -51,22 +51,29 @@ class ProductCalculator {
         // 计算按钮点击事件
         this.calculateBtn.addEventListener('click', () => this.calculate());
         
-        // 价格输入框实时验证（优化：减少重复调用，合并逻辑）
+        // 价格输入框实时验证（优化：添加延迟处理，避免影响中文输入法）
+        let priceValidationTimeout;
         this.productPriceInput.addEventListener('input', () => {
-            const isValid = this.validatePrice();
-            this.checkAdminTrigger();
+            // 清除之前的定时器
+            clearTimeout(priceValidationTimeout);
             
-            // 直接检查输入是否完整，避免重复调用validatePrice
-            const isRatioSelected = this.downPaymentRatioSelect.value !== '';
-            const isPeriodSelected = this.leasePeriodSelect.value !== '';
-            this.calculateBtn.disabled = !(isValid && isRatioSelected && isPeriodSelected);
-            
-            // 当商品售价修改或重新输入时，隐藏已计算的结果
-            this.overviewSection.classList.add('hidden');
-            this.billSection.classList.add('hidden');
-            this.downPayment.textContent = '';
-            this.totalRent.textContent = '';
-            this.installmentList.innerHTML = '';
+            // 添加延迟处理，避免影响中文输入法
+            priceValidationTimeout = setTimeout(() => {
+                const isValid = this.validatePrice();
+                this.checkAdminTrigger();
+                
+                // 直接检查输入是否完整，避免重复调用validatePrice
+                const isRatioSelected = this.downPaymentRatioSelect.value !== '';
+                const isPeriodSelected = this.leasePeriodSelect.value !== '';
+                this.calculateBtn.disabled = !(isValid && isRatioSelected && isPeriodSelected);
+                
+                // 当商品售价修改或重新输入时，隐藏已计算的结果
+                this.overviewSection.classList.add('hidden');
+                this.billSection.classList.add('hidden');
+                this.downPayment.textContent = '';
+                this.totalRent.textContent = '';
+                this.installmentList.innerHTML = '';
+            }, 300);
         });
         
         // 回车触发计算
