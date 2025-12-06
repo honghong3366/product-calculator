@@ -161,9 +161,9 @@ class ProductCalculator {
         this.calculateBtn.disabled = !(isPriceValid && isRatioSelected && isPeriodSelected);
     }
     
-    // 格式化金额显示
+    // 格式化金额显示（去掉千位分隔符）
     formatCurrency(amount) {
-        return '¥' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '元';
+        return '¥' + amount.toFixed(2) + '元';
     }
     
     // 计算函数（优化：移除模拟延迟，优化数学运算）
@@ -545,13 +545,13 @@ class ProductCalculator {
     
     // 初始化默认设置
     initializeDefaultSettings() {
-        // 添加50%首付选项
+        // 保留50%首付选项
         this.downPaymentOptions = [0.25, 0.3, 0.35, 0.4, 0.5];
         this.interestRates = {
             6: { 0.25: 0.255, 0.3: 0.235, 0.35: 0.23, 0.4: 0.22, 0.5: 0.215 },
             9: { 0.25: 0.275, 0.3: 0.268, 0.35: 0.268, 0.4: 0.265, 0.5: 0.26 },
-            12: { 0.25: 0.298, 0.3: 0.298, 0.35: 0.295, 0.4: 0.285, 0.5: 0.28 },
-            24: { 0.25: 0.35, 0.3: 0.345, 0.35: 0.34, 0.4: 0.335, 0.5: 0.33 } // 添加24期选项
+            12: { 0.25: 0.298, 0.3: 0.298, 0.35: 0.295, 0.4: 0.285, 0.5: 0.28 }
+            // 移除24期选项
         };
     }
     
